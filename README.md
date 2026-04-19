@@ -2,6 +2,12 @@
 
 This is my personal CV, made using the [AwesomeCV](https://github.com/posquit0/Awesome-CV) template.
 
+## Download
+
+[**Download the latest PDF**](https://github.com/tsadoq/my-cv/releases/latest/download/cv.pdf) — auto-built from `main` on every push.
+
+[![Build CV](https://github.com/tsadoq/my-cv/actions/workflows/build-cv.yml/badge.svg)](https://github.com/tsadoq/my-cv/actions/workflows/build-cv.yml)
+
 ## Credit
 
 [**LaTeX**](http://www.latex-project.org) is a fantastic typesetting program that a lot of people use these days, especially the math and computer science people in academia.

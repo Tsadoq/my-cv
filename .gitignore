@@ -1,0 +1,39 @@
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+*.xdv
+*.dvi
+*.ps
+
+# Font/package generation logs
+missfont.log
+*.glo
+*.gls
+*.ist
+*.acn
+*.acr
+*.alg
+
+# Build output (produced by CI and published as a GitHub release asset)
+*.pdf
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*~

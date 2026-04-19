@@ -1,0 +1,46 @@
+name: Build CV
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**.tex"
+      - "**.cls"
+      - "**.bib"
+      - "fonts/**"
+      - ".github/workflows/build-cv.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compile cv.tex with XeLaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: cv.tex
+          latexmk_use_xelatex: true
+          extra_system_packages: "font-noto-cjk"
+
+      - name: Move rolling 'latest' tag to current commit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git tag -f latest
+          git push origin latest --force
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest CV
+          body: |
+            Automated build of `cv.pdf` from commit ${{ github.sha }}.
+          files: cv.pdf
+          make_latest: "true"
