@@ -1,23 +1,14 @@
 %!TEX TS-program = xelatex
 %!TEX encoding = UTF-8 Unicode
+%
 % Awesome CV LaTeX Template for CV/Resume
-%
-% This template has been downloaded from:
 % https://github.com/posquit0/Awesome-CV
-%
-% Author:
-% Claud D. Park <posquit0.bj@gmail.com>
-% http://www.posquit0.com
-%
-% Template license:
-% CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
-%
-
+% Author: Claud D. Park <posquit0.bj@gmail.com>
+% Template license: CC BY-SA 4.0
 
 %-------------------------------------------------------------------------------
-% CONFIGURATIONS
+% DOCUMENT CLASS & PACKAGES
 %-------------------------------------------------------------------------------
-% A4 paper size by default, use 'letterpaper' for US letter
 \documentclass[11pt, a4paper]{awesome-cv}
 
 \usepackage{tabularx}
@@ -25,120 +16,101 @@
 \usepackage{fontawesome}
 \usepackage{xcolor}
 \usepackage{multicol}
-\usepackage{xstring}
-\usepackage{etoolbox}
-\newboolean{bold}
-
-\addbibresource{publications.bib}
-
-\renewcommand*{\mkbibnamegiven}[1]{%
-  \ifitemannotation{highlight}
-    {\textbf{#1}}
-    {#1}}
-
-\renewcommand*{\mkbibnamefamily}[1]{%
-  \ifitemannotation{highlight}
-    {\textbf{#1}}
-    {#1}}
-    
+\usepackage{needspace}
 \usepackage{xeCJK}
+
 \setCJKmainfont[Scale=0.8]{Noto Sans CJK SC}
 
-% Configure page margins with geometry
-\geometry{left=1.4cm, top=.5cm, right=1.4cm, bottom=.5cm, footskip=.5cm}
-
-% Specify the location of the included fonts
+%-------------------------------------------------------------------------------
+% LAYOUT & THEME
+%-------------------------------------------------------------------------------
+\geometry{left=1.3cm, top=.4cm, right=1.3cm, bottom=.4cm, footskip=.3cm}
 \fontdir[fonts/]
 
-% Color for highlights
-% Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
-%                 awesome-nephritis, awesome-concrete, awesome-darknight
-%\colorlet{awesome}{awesome-darknight}
-% Uncomment if you would like to specify your own color
 \definecolor{awesome}{HTML}{0085ff}
 \hypersetup{
-    colorlinks=true,
-    urlcolor=awesome,
-    linkbordercolor=black,
-    pdfborderstyle={/S/U/W 1}
+  colorlinks=true,
+  urlcolor=awesome,
+  linkbordercolor=black,
+  pdfborderstyle={/S/U/W 1}
 }
 
-
-% Colors for text
-% Uncomment if you would like to specify your own color
-% \definecolor{darktext}{HTML}{414141}
-% \definecolor{text}{HTML}{333333}
-% \definecolor{graytext}{HTML}{5D5D5D}
-% \definecolor{lighttext}{HTML}{999999}
-
-% Set false if you don't want to highlight section with awesome color
 \setbool{acvSectionColorHighlight}{false}
-
-% If you would like to change the social information separator from a pipe (|) to something else
 \renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
 
+% Prevent section headers from being orphaned at the bottom of a page:
+% reserve enough vertical space (~6 lines) for the title + first entry header
+% + a couple of bullets before typesetting the section rule.
+\let\origcvsection\cvsection
+\renewcommand{\cvsection}[1]{\needspace{6\baselineskip}\origcvsection{#1}}
 
 %-------------------------------------------------------------------------------
-%	PERSONAL INFORMATION
-%	Comment any of the lines below if they are not required
+% HELPERS
 %-------------------------------------------------------------------------------
-% Available options: circle|rectangle,edge/noedge,left/right
-% \photo[rectangle,edge,right]{./examples/profile}
-\name{Matteo}{Villosio} 
+% Bullet list used by \joborrole. Tight vertical metrics so it sits flush
+% under the role header.
+\newenvironment{rolebullets}{%
+  \begin{itemize}[leftmargin=2ex, nosep, noitemsep, topsep=0pt, partopsep=0pt]%
+    \setlength{\parskip}{0pt}%
+    \renewcommand{\labelitemi}{\bullet}%
+}{%
+  \end{itemize}%
+}
+
+% \joborrole{<title>}{<organization>}{<location>}{<dates>}{<\item list>}
+%
+% Builds the header row(s) directly (mirroring \cventry's two-row layout)
+% instead of delegating to \cventry. Reasons:
+%   - \cventry puts the description inside a \multicolumn cell of a tabular*,
+%     which doesn't measure block-level list content correctly and causes
+%     entries to visually overlap.
+%   - Calling \cventry with an empty description still leaves an empty
+%     multicolumn row that adds a visible gap before the bullets.
+% \needspace avoids orphaning a header at the bottom of a page, and
+% \nopagebreak between header and bullets keeps them together.
+\newcommand{\joborrole}[5]{%
+  \needspace{5\baselineskip}%
+  \setlength\tabcolsep{0pt}%
+  \setlength{\extrarowheight}{-1pt}%
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    \ifempty{#2#3}
+      {\entrytitlestyle{#1} & \entrydatestyle{#4} \\}
+      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
+       \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+  \end{tabular*}%
+  \nopagebreak[4]\par\vspace{-2mm}%
+  \begin{rolebullets}
+    #5
+  \end{rolebullets}%
+  \vspace{0mm}%
+}
+
+%-------------------------------------------------------------------------------
+% PERSONAL INFORMATION
+%-------------------------------------------------------------------------------
+\name{Matteo}{Villosio}
 \position{Artificial Intelligence Specialist @ Tinexta | Advisor @ DataAIMed | Member @ GlobalAI Association}
-% \address{42-8, Bangbae-ro 15-gil, Seocho-gu, Seoul, 00681, Rep. of KOREA}
-
 \mobile{(+39) 340 281 5029}
 \email{cv@matteovillosio.com}
 \homepage{www.matteovillosio.com}
 \github{tsadoq}
 \linkedin{matteo-villosio}
-% \gitlab{gitlab-id}
-% \stackoverflow{SO-id}{SO-name}
-% \twitter{@twit}
-% \skype{skype-id}
-% \reddit{reddit-id}
-% \medium{madium-id}
-%% \firstname and \lastname will be used
-% \googlescholar{googlescholar-id}{}
-% \extrainfo{extra informations}
-
-
-% \quote{``Be the change that you want to see in the world."}
-
 
 %-------------------------------------------------------------------------------
 \begin{document}
 
-% Print the header with above personal informations
-% Give optional argument to change alignment(C: center, L: left, R: right)
 \makecvheader[L]
-
-% Print the footer with 3 arguments(<left>, <center>, <right>)
-% Leave any of these blank if they are not needed
-\makecvfooter
-  {}
-  {}
-  {}
-
+\makecvfooter{}{}{}
 
 %-------------------------------------------------------------------------------
-%	CV/RESUME CONTENT
-%	Each section is imported separately, open each file in turn to modify content
+% CV CONTENT
 %-------------------------------------------------------------------------------
-% \input{resume/summary.tex}
 \input{resume/experience.tex}
 \input{resume/education.tex}
-\vspace*{\fill}
-\input{resume/languages.tex}
-\newpage
-% \input{resume/publications.tex}
-% \input{resume/honors.tex}
 \input{resume/projects.tex}
 \input{resume/presentation.tex}
-% \input{resume/writing.tex}
-% \input{resume/committees.tex}
 \input{resume/extracurricular.tex}
+\vspace*{\fill}
+\input{resume/languages.tex}
 
-%-------------------------------------------------------------------------------
 \end{document}
