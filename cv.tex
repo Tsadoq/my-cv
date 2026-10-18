@@ -17,36 +17,77 @@
 \usepackage{tabularx}
 \usepackage{array}
 \usepackage{xcolor}
-\usepackage{multicol}
 \usepackage{needspace}
-
+\usepackage{lastpage}
+% XeTeX supports protrusion only; expansion needs pdfTeX/LuaTeX.
+\usepackage[protrusion=true, expansion=false]{microtype}
 
 %-------------------------------------------------------------------------------
 % LAYOUT & THEME
 %-------------------------------------------------------------------------------
-\geometry{left=1.3cm, top=.4cm, right=1.3cm, bottom=.4cm, footskip=.3cm}
+% 1.5cm sides keeps the measure around 95 characters per line; 1cm top/bottom
+% survives printer margins; footskip >= 0.6cm is what fancyhdr needs for the footer.
+\geometry{left=1.5cm, right=1.5cm, top=1.0cm, bottom=1.1cm, footskip=0.6cm}
 \fontdir[fonts/]
 
-\definecolor{awesome}{HTML}{0085ff}
-\hypersetup{
-  colorlinks=true,
-  urlcolor=awesome,
-  linkbordercolor=black,
-  pdfborderstyle={/S/U/W 1}
-}
+% One blue, dark enough for WCAG AA at small sizes, used for links only.
+% Locations and dates stay gray so blue always means "clickable".
+\definecolor{awesome}{HTML}{0B5FA5}
+\hypersetup{colorlinks=true, urlcolor=awesome}
 
 \setbool{acvSectionColorHighlight}{false}
-\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
+\renewcommand{\acvHeaderSocialSep}{\enskip\textbar\enskip}
+\renewcommand{\acvSectionTopSkip}{2.5mm}
+
+% Upright titles: 8pt gray small caps was the least legible line on the page and
+% flattened brand casing (DatAIMed -> DATAIMED). Location in gray like the date.
+\renewcommand*{\headerpositionstyle}[1]{{\fontsize{8.5pt}{1em}\bodyfont\color{darktext} #1}}
+\renewcommand*{\entrypositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
+\renewcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
+
+% Ragged-right bullets (set in rolebullets below) plus a high hyphenation
+% penalty: at this measure justified text produced rivers and broken words.
+\hyphenpenalty=5000
+\exhyphenpenalty=5000
+\tolerance=2000
+\emergencystretch=1.5em
+\hyphenation{Streamlit MongoDB LangChain Elasticsearch AutoGen Checkmk DatAIMed Haystack Komoot Greenomy Tinexta}
+
+% Emphasis budget: at most one \kpi per bullet, on the quantified outcome,
+% never on the verb. Keeps bold meaningful and lets the page be skimmed.
+\newcommand{\kpi}[1]{\textbf{#1}}
+
+% The class's cvhonors/cvskills tables are wider than \textwidth (overfull by
+% 2.5cm and ~2cm) and the 1.5cm date column wraps "2024 -- Present". Same
+% look, correct widths.
+\renewenvironment{cvhonors}{%
+  \vspace{\acvSectionContentTopSkip}
+  \vspace{-2mm}
+  \begin{center}
+    \setlength\tabcolsep{0pt}
+    \setlength{\extrarowheight}{0pt}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} C{2.6cm} L{\textwidth - 2.6cm - 2.5cm} R{2.5cm}}
+}{%
+    \end{tabular*}
+  \end{center}
+}
+\renewenvironment{cvskills}{%
+  \vspace{\acvSectionContentTopSkip}
+  \vspace{-2.0mm}
+  \begin{center}
+    \setlength\tabcolsep{0pt}
+    \setlength{\extrarowheight}{0pt}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} R{2.6cm}@{\hspace{3mm}} L{\textwidth - 2.6cm - 3mm}}
+}{%
+    \end{tabular*}
+  \end{center}
+}
 
 % Prevent section headers from being orphaned at the bottom of a page:
 % reserve enough vertical space (~6 lines) for the title + first entry header
 % + a couple of bullets before typesetting the section rule.
 \let\origcvsection\cvsection
 \renewcommand{\cvsection}[1]{\needspace{6\baselineskip}\origcvsection{#1}}
-
-% Drop the blank band multicols adds above/below the two-column sections
-% (Certifications, Volunteering) so they sit as tight as the other sections.
-\setlength{\multicolsep}{0pt}
 
 %-------------------------------------------------------------------------------
 % HELPERS
@@ -55,6 +96,7 @@
 % under the role header.
 \newenvironment{rolebullets}{%
   \begin{itemize}[leftmargin=2ex, nosep, noitemsep, topsep=0pt, partopsep=0pt]%
+    \RaggedRight%
     \setlength{\parskip}{0pt}%
     \renewcommand{\labelitemi}{\bullet}%
 }{%
@@ -89,11 +131,26 @@
   \vspace{0mm}%
 }
 
+% One-line list items (projects, volunteering): bold name, right-aligned link
+% or date, description on the next line.
+\newenvironment{linelist}{%
+  \begin{itemize}[leftmargin=*, nosep, label={}]%
+    \RaggedRight%
+    \descriptionstyle{}%
+}{%
+  \end{itemize}%
+}
+% \lineitem{<name>}{<right-hand text>}{<description>}
+\newcommand{\lineitem}[3]{%
+  \item \entrytitlestyle{#1} \hfill {\entrydatestyle{#2}} \\ #3
+  \vspace{1.2pt}
+}
+
 %-------------------------------------------------------------------------------
 % PERSONAL INFORMATION
 %-------------------------------------------------------------------------------
 \name{Matteo}{Villosio}
-\position{Senior AI Engineer \& Tech Lead @ Checkmk | Cofounder @ DatAIMed | Instructor @ start2impact | Member @ GlobalAI Association}
+\position{Senior AI Engineer \& Tech Lead{\enskip\textbar\enskip}LLM agents, RAG and AI security in production}
 \mobile{(+39) 340 281 5029}
 \email{cv@matteovillosio.com}
 \homepage{www.matteovillosio.com}
@@ -104,17 +161,19 @@
 \begin{document}
 
 \makecvheader[L]
-\makecvfooter{}{}{}
+\makecvfooter{\today}{Matteo Villosio~~\textperiodcentered~~Curriculum Vitae}{\thepage\,/\,\pageref{LastPage}}
 
 %-------------------------------------------------------------------------------
 % CV CONTENT
 %-------------------------------------------------------------------------------
+\input{resume/summary.tex}
+\input{resume/skills.tex}
 \input{resume/experience.tex}
-\input{resume/education.tex}
+\input{resume/advisory.tex}
 \input{resume/projects.tex}
-\input{resume/presentation.tex}
-\input{resume/extracurricular.tex}
-\vspace*{\fill}
+\input{resume/education.tex}
+\input{resume/certifications.tex}
+\input{resume/volunteering.tex}
 \input{resume/languages.tex}
 
 \end{document}

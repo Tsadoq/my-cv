@@ -75,7 +75,7 @@
 % Needed to use icons from font-awesome
 % (https://github.com/posquit0/latex-fontawesome)
 \RequirePackage{fontawesome}
-\RequirePackage[default,opentype]{sourcesanspro}
+\RequirePackage[default,opentype,semibold]{sourcesanspro}
 % Needed for the photo ID
 \RequirePackage[skins]{tcolorbox}
 % Needed to deal a paragraphs
@@ -479,7 +479,7 @@
         {}%
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{https://github.com/\@github}{\faGithubSquare\acvHeaderIconSep\@github}%
+          \href{https://github.com/\@github}{\faGithubSquare\acvHeaderIconSep github.com/\@github}%
         }%
       \ifthenelse{\isundefined{\@gitlab}}%
         {}%
@@ -497,7 +497,7 @@
         {}%
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{https://www.linkedin.com/in/\@linkedin}{\faLinkedinSquare\acvHeaderIconSep\@linkedin}%
+          \href{https://www.linkedin.com/in/\@linkedin}{\faLinkedinSquare\acvHeaderIconSep linkedin.com/in/\@linkedin}%
         }%
       \ifthenelse{\isundefined{\@twitter}}%
         {}%
