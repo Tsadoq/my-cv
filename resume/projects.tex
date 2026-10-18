@@ -1,21 +1,16 @@
-\cvsection{Notable Projects}
+% Four public repos, ordered by relevance to the reader, not by stars. Reach
+% numbers verified 2026-10-18 (GitHub API, pepy.tech, HN Algolia).
+\cvsection{Open-Source Projects}
 
 \begin{cventries}
-\footnotesize
-\begin{itemize}[leftmargin=*, nosep, label={}]
-  \item \textbf{ErisForge: Behavior Control for LLMs} \hfill \href{https://github.com/Tsadoq/erisforge}{\color{awesome}github.com/Tsadoq/erisforge} \\
-  Python library for modifying \textbf{Large Language Models (LLMs)} by ablating or inducing specific behaviors through internal direction manipulation. Compatible with almost any transformer-based LLM, avoiding reliance on transformer lenses or architecture-specific tools. Useful for \textbf{refusal behavior control}, tone/personality customization, censorship research, and adversarial testing. \textbf{200+ stars on GitHub}, 100 points on HackerNews.
-  \vspace{2pt}
-
-  \item \textbf{Haystack Documentation AI Agent} \hfill \href{https://github.com/Tsadoq/haystack-documentation-agent}{\color{awesome}github.com/Tsadoq/haystack-documentation-agent} \\
-  Stateless GenAI-powered agent that browses the \textbf{Haystack} library documentation and writes code for the user; built on Haystack and Streamlit.
-  \vspace{2pt}
-
-  \item \textbf{KomPY: Python Wrapper for Komoot APIs} \hfill \href{https://github.com/Tsadoq/kompy}{\color{awesome}github.com/Tsadoq/kompy} \\
-  Pythonic wrapper for \textbf{Komoot APIs} with typed datatypes and streamlined integration with the most used Python \textbf{geospatial libraries}.
-  \vspace{2pt}
-
-  \item \textbf{iCarl — Incremental Learning SOTA Improvement} \hfill {\color{awesome-skyblue} PoliTO, Graded 27/30} \\
-  Re-implementation of the SOTA \textbf{iCarl} classification training strategy in PyTorch + Scikit-learn, improving results via \textbf{image clustering} and \textbf{averaging}.
-\end{itemize}
+\begin{linelist}
+  \lineitem{ErisForge: behaviour steering for LLMs}{\href{https://github.com/tsadoq/erisforge}{github.com/tsadoq/erisforge}}
+    {Python library that ablates or induces behaviour directions (refusal, tone, adversarial testing) inside a model's layers; works with most transformer LLMs. \kpi{284 GitHub stars}, 17k PyPI downloads, 140 points on Show HN.}
+  \lineitem{Agent2Agent + MCP tutorial}{\href{https://github.com/tsadoq/a2a-mcp-tutorial}{github.com/tsadoq/a2a-mcp-tutorial}}
+    {Two MCP servers and Google ADK agents wired over A2A, with a fix for Google's broken sample. \kpi{113 GitHub stars}.}
+  \lineitem{thinking.town: a message board for AI agents}{\href{https://github.com/tsadoq/thinking-town-board}{github.com/tsadoq/thinking-town-board}}
+    {HTML, JSON API and a stateless streamable-HTTP MCP server; listed in the \kpi{official MCP Registry} and on Smithery.}
+  \lineitem{grokcheck: Claude Code plugin}{\href{https://github.com/tsadoq/grokcheck}{github.com/tsadoq/grokcheck}}
+    {Turns a diff or library into a checkpoint-gated lesson; a second agent fact-checks every claim against the code.}
+\end{linelist}
 \end{cventries}

@@ -75,7 +75,7 @@
 % Needed to use icons from font-awesome
 % (https://github.com/posquit0/latex-fontawesome)
 \RequirePackage{fontawesome}
-\RequirePackage[default,opentype]{sourcesanspro}
+\RequirePackage[default,opentype,semibold]{sourcesanspro}
 % Needed for the photo ID
 \RequirePackage[skins]{tcolorbox}
 % Needed to deal a paragraphs
@@ -447,7 +447,7 @@
   }%
   \begin{minipage}[c]{\headerphotowidth}%
     \ifthenelse{\equal{\@photoalign}{left}}{\raggedright\drawphoto}{}
-  \end{minipage}
+  \end{minipage}%
   \begin{minipage}[c]{\headertextwidth}
     \ifthenelse{\equal{#1}{L}}{\raggedright}{\ifthenelse{\equal{#1}{R}}{\raggedleft}{\centering}}
     \headerfirstnamestyle{\@firstname}\headerlastnamestyle{{}\acvHeaderNameDelim\@lastname}%
@@ -479,7 +479,7 @@
         {}%
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{https://github.com/\@github}{\faGithubSquare\acvHeaderIconSep\@github}%
+          \href{https://github.com/\@github}{\faGithubSquare\acvHeaderIconSep github.com/\@github}%
         }%
       \ifthenelse{\isundefined{\@gitlab}}%
         {}%
@@ -497,7 +497,7 @@
         {}%
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{https://www.linkedin.com/in/\@linkedin}{\faLinkedinSquare\acvHeaderIconSep\@linkedin}%
+          \href{https://www.linkedin.com/in/\@linkedin}{\faLinkedinSquare\acvHeaderIconSep linkedin.com/in/\@linkedin}%
         }%
       \ifthenelse{\isundefined{\@twitter}}%
         {}%
@@ -581,7 +581,7 @@
 % Define a paragraph for CV
 \newenvironment{cvparagraph}{%
   \vspace{\acvSectionContentTopSkip}
-  \vspace{-3mm}
+  \vspace{-1.5mm}
   \paragraphstyle
 }{%
   \par
