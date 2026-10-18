@@ -42,8 +42,13 @@
 % Upright titles: 8pt gray small caps was the least legible line on the page and
 % flattened brand casing (DatAIMed -> DATAIMED). Location in gray like the date.
 \renewcommand*{\headerpositionstyle}[1]{{\fontsize{8.5pt}{1em}\bodyfont\color{darktext} #1}}
+\renewcommand*{\entrytitlestyle}[1]{{\fontsize{10.5pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
 \renewcommand*{\entrypositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
-\renewcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
+\renewcommand*{\entrylocationstyle}[1]{{\fontsize{8.5pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
+\renewcommand*{\entrydatestyle}[1]{{\fontsize{8.5pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
+\renewcommand*{\headersocialstyle}[1]{{\fontsize{7.5pt}{1em}\headerfont\color{text} #1}}
+% Certification/volunteering rows share the Skills label axis.
+\renewcommand*{\honordatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\color{graytext} #1}}
 
 % Ragged-right bullets (set in rolebullets below) plus a high hyphenation
 % penalty: at this measure justified text produced rivers and broken words.
@@ -62,11 +67,11 @@
 % look, correct widths.
 \renewenvironment{cvhonors}{%
   \vspace{\acvSectionContentTopSkip}
-  \vspace{-2mm}
+  \vspace{-0.5mm}
   \begin{center}
     \setlength\tabcolsep{0pt}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} C{2.6cm} L{\textwidth - 2.6cm - 2.5cm} R{2.5cm}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} R{2.6cm}@{\hspace{3mm}} L{\textwidth - 2.6cm - 3mm - 1cm} R{1cm}}
 }{%
     \end{tabular*}
   \end{center}
@@ -87,7 +92,7 @@
 % reserve enough vertical space (~6 lines) for the title + first entry header
 % + a couple of bullets before typesetting the section rule.
 \let\origcvsection\cvsection
-\renewcommand{\cvsection}[1]{\needspace{6\baselineskip}\origcvsection{#1}}
+\renewcommand{\cvsection}[1]{\needspace{10\baselineskip}\origcvsection{#1}}
 
 %-------------------------------------------------------------------------------
 % HELPERS
@@ -97,6 +102,7 @@
 \newenvironment{rolebullets}{%
   \begin{itemize}[leftmargin=2ex, nosep, noitemsep, topsep=0pt, partopsep=0pt]%
     \RaggedRight%
+    \bodyfont\fontsize{10pt}{12pt}\selectfont%
     \setlength{\parskip}{0pt}%
     \renewcommand{\labelitemi}{\bullet}%
 }{%
@@ -134,16 +140,15 @@
 % One-line list items (projects, volunteering): bold name, right-aligned link
 % or date, description on the next line.
 \newenvironment{linelist}{%
-  \begin{itemize}[leftmargin=*, nosep, label={}]%
+  \begin{itemize}[leftmargin=0pt, labelsep=0pt, nosep, itemsep=3pt, label={}]%
     \RaggedRight%
-    \descriptionstyle{}%
+    \bodyfont\fontsize{10pt}{12pt}\selectfont%
 }{%
   \end{itemize}%
 }
 % \lineitem{<name>}{<right-hand text>}{<description>}
 \newcommand{\lineitem}[3]{%
-  \item \entrytitlestyle{#1} \hfill {\entrydatestyle{#2}} \\ #3
-  \vspace{1.2pt}
+  \item \entrytitlestyle{#1} \hfill {\fontsize{8.5pt}{1em}\bodyfontlight\selectfont #2} \\ #3
 }
 
 %-------------------------------------------------------------------------------
@@ -161,7 +166,7 @@
 \begin{document}
 
 \makecvheader[L]
-\makecvfooter{\today}{Matteo Villosio~~\textperiodcentered~~Curriculum Vitae}{\thepage\,/\,\pageref{LastPage}}
+\makecvfooter{Updated \ifcase\month\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi\ \number\year}{Matteo Villosio~~\textperiodcentered~~Curriculum Vitae}{\thepage\,/\,\pageref*{LastPage}}
 
 %-------------------------------------------------------------------------------
 % CV CONTENT

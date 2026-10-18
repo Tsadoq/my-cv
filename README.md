@@ -34,7 +34,7 @@ make check    # ATS sanity: ASCII hyphens, titles extract in normal case, 2 page
 
 - **Bullets**: result first, then how. One idea per bullet, at most two lines. Pattern: "Did X, measured by Y, by doing Z".
 - **Emphasis**: one `\kpi{...}` per bullet, on the quantified outcome, never on the verb.
-- **Tense**: present for current roles, past for everything else. Never mixed within a role.
+- **Tense**: present for ongoing responsibilities in current roles, past for completed achievements and for all past roles.
 - **Dates**: `Mon YYYY -- Present` (en dash). Current roles say "Present", not "Now".
 - **Numbers**: numerals; give a baseline whenever one exists (ms, %, before/after). A number that undersells is worse than no number.
 - **Names**: Elasticsearch, CrewAI, DeepLearning.AI, Hacker News, scikit-learn, multi-agent, cofounder.
