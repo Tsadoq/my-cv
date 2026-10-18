@@ -9,17 +9,17 @@
 %-------------------------------------------------------------------------------
 % DOCUMENT CLASS & PACKAGES
 %-------------------------------------------------------------------------------
+% Emit /ActualText so text extraction (ATS parsers, pdftotext) sees ASCII hyphens and
+% correctly cased small-caps instead of U+2011 and "SENiOR".
+\XeTeXgenerateactualtext=1
 \documentclass[11pt, a4paper]{awesome-cv}
 
 \usepackage{tabularx}
 \usepackage{array}
-\usepackage{fontawesome}
 \usepackage{xcolor}
 \usepackage{multicol}
 \usepackage{needspace}
-\usepackage{xeCJK}
 
-\setCJKmainfont[Scale=0.8]{Noto Sans CJK SC}
 
 %-------------------------------------------------------------------------------
 % LAYOUT & THEME

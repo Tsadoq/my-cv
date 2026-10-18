@@ -6,7 +6,7 @@ on:
     paths:
       - "**.tex"
       - "**.cls"
-      - "**.bib"
+      - "**.sty"
       - "fonts/**"
       - ".github/workflows/build-cv.yml"
   workflow_dispatch:
@@ -26,7 +26,6 @@ jobs:
         with:
           root_file: cv.tex
           latexmk_use_xelatex: true
-          extra_system_packages: "font-noto-cjk"
 
       - name: Move rolling 'latest' tag to current commit
         env:
