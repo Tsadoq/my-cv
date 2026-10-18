@@ -44,6 +44,10 @@
 \let\origcvsection\cvsection
 \renewcommand{\cvsection}[1]{\needspace{6\baselineskip}\origcvsection{#1}}
 
+% Drop the blank band multicols adds above/below the two-column sections
+% (Certifications, Volunteering) so they sit as tight as the other sections.
+\setlength{\multicolsep}{0pt}
+
 %-------------------------------------------------------------------------------
 % HELPERS
 %-------------------------------------------------------------------------------
@@ -89,7 +93,7 @@
 % PERSONAL INFORMATION
 %-------------------------------------------------------------------------------
 \name{Matteo}{Villosio}
-\position{Artificial Intelligence Specialist @ Tinexta | Advisor @ DataAIMed | Member @ GlobalAI Association}
+\position{Senior AI Engineer \& Tech Lead @ Checkmk | Cofounder @ DatAIMed | Instructor @ start2impact | Member @ GlobalAI Association}
 \mobile{(+39) 340 281 5029}
 \email{cv@matteovillosio.com}
 \homepage{www.matteovillosio.com}
