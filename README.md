@@ -27,8 +27,9 @@ make check    # ATS sanity: ASCII hyphens, titles extract in normal case, 2 page
 | `resume/skills.tex` | skills block (only tools evidenced elsewhere in the CV) |
 | `resume/experience.tex` | full-time roles, strictly reverse chronological |
 | `resume/advisory.tex` | concurrent part-time roles (advisory, teaching) |
-| `resume/projects.tex` | open source, one line + link each |
-| `resume/education.tex`, `certifications.tex`, `volunteering.tex`, `languages.tex` | the rest |
+| `resume/projects.tex` | open source, one line + link each; reach numbers verified against GitHub/PyPI/HN |
+| `resume/talks.tex` | conference talks and articles |
+| `resume/education.tex`, `languages.tex` | the rest |
 
 ## Writing rules
 
@@ -39,7 +40,8 @@ make check    # ATS sanity: ASCII hyphens, titles extract in normal case, 2 page
 - **Numbers**: numerals; give a baseline whenever one exists (ms, %, before/after). A number that undersells is worse than no number.
 - **Names**: Elasticsearch, CrewAI, DeepLearning.AI, Hacker News, scikit-learn, multi-agent, cofounder.
 - **Avoid**: end-to-end, modern, high-performance, from scratch, self-built, "as measured by ... by owning", internal level labels such as "(L7)".
-- **Sections**: keep it at two pages. Certifications and volunteering are one line each.
+- **Sections**: keep it at two pages. Course certificates and volunteering were cut; re-add only as one-liners if a role asks for them.
+- **Confidentiality**: nothing from internal docs beyond what was publicly presented (conference, community call) or is generic engineering practice; no ticket IDs, colleague names, costs, tenant counts or unreleased feature names.
 
 ## Credit
 
