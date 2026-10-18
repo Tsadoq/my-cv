@@ -15,7 +15,7 @@
       \item Designed Checkmk's MCP server: built the proof of concept (\kpi{about 30 task-oriented tools}, gated writes), wrote the architecture decision records (OAuth 2.1 auth), handed delivery to the team; demoed it live at the Community Call.
       \item Shipped \kpi{2 AI features} for a 5-engineer team, including Explain with AI (Gemini on Vertex AI), Checkmk's first AI product feature: streaming, auth, rate limiting, SLOs; co-presented it at Checkmk Conference \#12.
       \item Designing the agent harness behind Checkmk's AI assistant (FastAPI, SSE, pydantic-ai, Anthropic/OpenAI provider abstraction, prompt caching); drove the \kpi{agent-evaluation RFC} and reviewed the Inspect AI eval suite.
-      \item Took over the documentation chatbot and rebuilt its RAG stack: new ETL, \kpi{pgvector hybrid search} with reciprocal rank fusion.
+      \item Took over the documentation chatbot and rebuilt its RAG stack: new ETL, \kpi{pgvector hybrid search} with rank fusion.
       \item Red-teamed LLM features, finding \kpi{40 vulnerabilities}, and built a 4-agent security-audit pipeline with adversarial review for the AI service and MCP server; owned remediation and the secure-by-design baseline adopted by later releases.
     }
 
