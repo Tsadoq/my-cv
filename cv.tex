@@ -37,7 +37,10 @@
 
 \setbool{acvSectionColorHighlight}{false}
 \renewcommand{\acvHeaderSocialSep}{\enskip\textbar\enskip}
-\renewcommand{\acvSectionTopSkip}{2.5mm}
+\renewcommand{\acvSectionTopSkip}{2mm}
+% Rows in the skills and honours tables: label on the first line of its row, small gap between rows.
+\renewcommand*{\cvskill}[2]{\skilltypestyle{#1} & \skillsetstyle{#2} \\[3pt]}
+\renewcommand*{\cvhonor}[4]{\honordatestyle{#4} & \honorpositionstyle{#1}, \descriptionstyle{#2} & \descriptionstyle{#3} \\[3pt]}
 
 % Upright titles: 8pt gray small caps was the least legible line on the page and
 % flattened brand casing (DatAIMed -> DATAIMED). Location in gray like the date.
@@ -71,7 +74,7 @@
   \begin{center}
     \setlength\tabcolsep{0pt}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} R{2.6cm}@{\hspace{3mm}} L{\textwidth - 2.6cm - 3mm - 1cm} R{1cm}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} >{\raggedleft\arraybackslash}p{2.6cm}@{\hspace{3mm}} >{\raggedright\arraybackslash}p{\textwidth - 2.6cm - 3mm - 1cm} >{\raggedleft\arraybackslash}p{1cm}}
 }{%
     \end{tabular*}
   \end{center}
@@ -82,7 +85,7 @@
   \begin{center}
     \setlength\tabcolsep{0pt}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} R{2.6cm}@{\hspace{3mm}} L{\textwidth - 2.6cm - 3mm}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} >{\raggedleft\arraybackslash}p{2.6cm}@{\hspace{3mm}} >{\raggedright\arraybackslash}p{\textwidth - 2.6cm - 3mm}}
 }{%
     \end{tabular*}
   \end{center}
@@ -179,6 +182,5 @@
 \input{resume/talks.tex}
 \input{resume/education.tex}
 \input{resume/volunteering.tex}
-\input{resume/languages.tex}
 
 \end{document}
