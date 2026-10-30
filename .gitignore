@@ -37,3 +37,7 @@ missfont.log
 .idea/
 *.swp
 *~
+
+# Local preview artifacts (make preview / make check)
+page-*.png
+cv.txt

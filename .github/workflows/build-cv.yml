@@ -6,7 +6,8 @@ on:
     paths:
       - "**.tex"
       - "**.cls"
-      - "**.bib"
+      - "**.sty"
+      - "Makefile"
       - "fonts/**"
       - ".github/workflows/build-cv.yml"
   workflow_dispatch:
@@ -26,7 +27,11 @@ jobs:
         with:
           root_file: cv.tex
           latexmk_use_xelatex: true
-          extra_system_packages: "font-noto-cjk"
+
+      - name: Check text extraction (ATS view)
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils >/dev/null
+          make check-only
 
       - name: Move rolling 'latest' tag to current commit
         env:
